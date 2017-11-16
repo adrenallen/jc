@@ -74,6 +74,8 @@ func main() {
 					fmt.Printf("%v does not match! Template has %v and compare has %v\n", key, tempVal, compVal)
 				}
 			}
+		} else {
+			fmt.Printf("%v is missing from compare file! Value in template is %v\n", key, tempVal)
 		}
 	}
 
