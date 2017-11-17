@@ -37,12 +37,28 @@ func main() {
 		os.Exit(0)
 	}
 
-	templateParsed, _ := gabs.ParseJSON(templateFile)
-	templateChildren, _ := templateParsed.ChildrenMap()
+	templateParsed, err := gabs.ParseJSON(templateFile)
+	if err != nil {
+		fmt.Printf("Error occurred while parsing template file %v\n", err)
+		os.Exit(0)
+	}
+	templateChildren, err := templateParsed.ChildrenMap()
+	if err != nil {
+		fmt.Printf("Error occurred while parsing template file %v\n", err)
+		os.Exit(0)
+	}
 	templateList := flattenJSON(templateChildren, "")
 
-	compareParsed, _ := gabs.ParseJSON(compareFile)
-	compareChildren, _ := compareParsed.ChildrenMap()
+	compareParsed, err := gabs.ParseJSON(compareFile)
+	if err != nil {
+		fmt.Printf("Error occurred while parsing compare file %v\n", err)
+		os.Exit(0)
+	}
+	compareChildren, err := compareParsed.ChildrenMap()
+	if err != nil {
+		fmt.Printf("Error occurred while parsing compare file %v\n", err)
+		os.Exit(0)
+	}
 	compareList := flattenJSON(compareChildren, "")
 
 	for key, tempVal := range templateList {
